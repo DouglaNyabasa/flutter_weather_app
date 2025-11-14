@@ -1,15 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_report_app/Provider/theme_provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final themeMode = ref.watch(themeNotifierProvider);
+    final notifier = ref.read(themeNotifierProvider.notifier);
+    final isDark = themeMode == ThemeMode.dark;
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          SizedBox(width: 35),
+          SizedBox(
+            width: 320,
+            height: 50,
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: "Search City",
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
+                labelStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: notifier.toggleTheme,
+            child: Icon(isDark ? Icons.light_mode : Icons.dark_mode,
+            color: isDark? Colors.black:Colors.white,
+            ),
+          ),
+          SizedBox(width: 25),
+        ],
+      ),
+    );
   }
 }
