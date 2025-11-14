@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:weather_report_app/contants/colors.dart';
+import 'package:weather_report_app/screens/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,10 +12,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    _timer = Timer(Duration(seconds: 3),(){
+     if(mounted){
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+     }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 40),
@@ -27,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontWeight: FontWeight.w800,
                     letterSpacing: -0.5,
                     height: 1.2,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -41,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w400,
-                    color: Colors.white,
+                    color:Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -54,14 +74,17 @@ class _SplashScreenState extends State<SplashScreen> {
                       borderRadius: BorderRadius.circular(20),
                     )
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _timer.cancel();
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40,
                       vertical: 15
                     ),
                     child: Text("Get Started",style: TextStyle(
-                      fontWeight: FontWeight.bold,fontSize: 18,color: Colors.white
+                      fontWeight: FontWeight.bold,fontSize: 18,color: Theme.of(context).colorScheme.secondary,
                     ),),
                   ),
                 ),
