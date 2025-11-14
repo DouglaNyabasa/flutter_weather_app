@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_report_app/Provider/theme_provider.dart';
+import 'package:weather_report_app/service/api_service.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +11,18 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final _weatherService = WeatherApi();
+  String city = "Harare";
+  String country = "";
+  Map<String, dynamic> currentValue ={};
+  List<dynamic> hourly = [];
+  List<dynamic> pastWeek = [];
+  List<dynamic> next7days = [];
+  bool isLoading = false;
+
+
+
+
   @override
   Widget build(BuildContext context) {
     final themeMode = ref.watch(themeNotifierProvider);
