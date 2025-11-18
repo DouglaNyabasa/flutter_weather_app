@@ -1,15 +1,63 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:weather_report_app/contants/app_colors.dart';
+import 'package:weather_report_app/screens/weather_screen/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+   HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final _screens =[
+  const WeatherScreen(),
+  const Center(child: Text("Search Screen"),),
+  const Center(child: Text("Weather Screen"),),
+  const Center(child: Text("Settings Screen"),),
+
+];
+int _currentPageIndex = 0;
+final _destinations = const [
+  NavigationDestination(icon: Icon(CupertinoIcons.home),
+    label: 'Home',
+    selectedIcon: Icon(CupertinoIcons.home, color: Colors.orange,),
+  ),
+  NavigationDestination(icon: Icon(CupertinoIcons.search),
+    label: 'Search',
+    selectedIcon: Icon(CupertinoIcons.search, color: Colors.orange,),
+  ),
+  NavigationDestination(icon: Icon(CupertinoIcons.cloud_moon_bolt),
+    label: 'Weather',
+    selectedIcon: Icon(CupertinoIcons.cloud_moon_bolt, color: Colors.orange,),
+  ),
+  NavigationDestination(icon: Icon(CupertinoIcons.settings_solid),
+    label: 'Settings',
+    selectedIcon: Icon(CupertinoIcons.settings_solid, color: Colors.orange,),
+
+  ),
+];
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+       body: _screens[_currentPageIndex],
+       bottomNavigationBar: NavigationBarTheme(
+         data: NavigationBarThemeData(
+           backgroundColor: AppColors.secondaryBlack
+         ),
+         child: NavigationBar(destinations: _destinations,
+         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+         selectedIndex: _currentPageIndex ,
+           indicatorColor: Colors.transparent,
+           onDestinationSelected: (index){
+           setState(() {
+             _currentPageIndex = index;
+           });
+           },
+         ),
+       ),
+    );
   }
 }
