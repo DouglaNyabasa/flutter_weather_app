@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:weather_report_app/contants/colors.dart';
+import 'package:weather_report_app/contants/app_colors.dart';
 import 'package:weather_report_app/screens/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 padding: EdgeInsets.only(top: 30),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColor,
+                    backgroundColor: Color(0xFFd98f1e),
                     shape:  RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     )
