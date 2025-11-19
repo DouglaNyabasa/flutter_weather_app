@@ -5,6 +5,7 @@ import 'package:weather_report_app/Provider/current_weather_provider.dart';
 import 'package:weather_report_app/contants/text_styles.dart';
 import 'package:weather_report_app/extensions/datetime.dart';
 import 'package:weather_report_app/views/widgets/gradient_container.dart';
+import 'package:weather_report_app/views/widgets/hourly_weather_forecast.dart';
 import 'package:weather_report_app/views/widgets/weather_info.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -30,11 +31,20 @@ class WeatherScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 40,),
                     Text(weather.weather[0].description, style: TextStyles.h2,),
-                    const SizedBox(height: 40,),
-                    WeatherInfo(weather: weather)
-
+                     ],
+                ),
+                const SizedBox(height: 40,),
+                WeatherInfo(weather: weather),
+                const SizedBox(height: 40,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Today', style: TextStyles.h2,),
+                    TextButton(onPressed: (){}, child: const Text("View full Forecast",style: TextStyle(color: Colors.grey),))
                   ],
-                )
+                ),
+                const SizedBox(height: 15,),
+                HourlyWeatherForecast(),
 
 
 

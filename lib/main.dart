@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_report_app/Provider/theme_provider.dart';
 import 'package:weather_report_app/contants/Theme/Theme.dart';
-import 'package:weather_report_app/screens/home_screen/home_screen.dart';
 import 'package:weather_report_app/screens/splash_screen/splash_screen.dart';
 
 void main() {
@@ -19,7 +18,7 @@ class MyApp extends ConsumerWidget {
       theme: darkTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
-      home:  HomeScreen(),
+      home:  SplashScreen(),
     );
   }
 }
