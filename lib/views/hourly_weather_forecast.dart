@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_report_app/Provider/hourly_weather_provider.dart';
 import 'package:weather_report_app/extensions/int.dart';
 
-import '../../contants/app_colors.dart';
-import '../../contants/text_styles.dart';
-import '../../utils/get_weather_icons.dart';
+import '../contants/app_colors.dart';
+import '../contants/text_styles.dart';
+import '../utils/get_weather_icons.dart';
 
 class HourlyWeatherForecast extends ConsumerWidget {
   const HourlyWeatherForecast({super.key});

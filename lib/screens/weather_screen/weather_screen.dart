@@ -4,9 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_report_app/Provider/current_weather_provider.dart';
 import 'package:weather_report_app/contants/text_styles.dart';
 import 'package:weather_report_app/extensions/datetime.dart';
-import 'package:weather_report_app/views/widgets/gradient_container.dart';
-import 'package:weather_report_app/views/widgets/hourly_weather_forecast.dart';
-import 'package:weather_report_app/views/widgets/weather_info.dart';
+import 'package:weather_report_app/views/gradient_container.dart';
+import 'package:weather_report_app/views/hourly_weather_forecast.dart';
+
+import '../../views/weather_info.dart';
 
 class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
