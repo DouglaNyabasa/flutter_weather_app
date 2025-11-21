@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_report_app/contants/app_colors.dart';
+import 'package:weather_report_app/screens/forecast_screen/forecast_screen.dart';
 import 'package:weather_report_app/screens/search_screen/search_screen.dart';
+import 'package:weather_report_app/screens/weather_detail_screen/weather_detail_screen.dart';
 import 'package:weather_report_app/screens/weather_screen/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 final _screens =[
   const WeatherScreen(),
   const SearchScreen(),
-  const Center(child: Text("Weather Screen"),),
+  const ForecastScreen(),
   const Center(child: Text("Settings Screen"),),
 
 ];
