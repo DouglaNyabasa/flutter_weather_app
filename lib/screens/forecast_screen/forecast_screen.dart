@@ -3,6 +3,7 @@ import 'package:weather_report_app/contants/text_styles.dart';
 import 'package:weather_report_app/extensions/datetime.dart';
 import 'package:weather_report_app/views/gradient_container.dart';
 import 'package:weather_report_app/views/hourly_weather_forecast.dart';
+import 'package:weather_report_app/views/weekly_forecast_view.dart';
 
 class ForecastScreen extends StatelessWidget {
   const ForecastScreen({super.key});
