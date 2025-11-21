@@ -8,46 +8,61 @@ import 'package:weather_report_app/widgets/subscript_text.dart';
 
 import '../utils/get_weather_icons.dart';
 
+
+
 class WeeklyForecastView extends ConsumerWidget {
   const WeeklyForecastView({super.key});
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-    final weeklyForecastData = ref.watch(weeklyWeatherProvider);
-    
-    return  weeklyForecastData.when(
-        data: (weeklyweather){
-          return ListView.builder(itemCount: weeklyweather.daily.weatherCode.length,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weeklyForecast = ref.watch(weeklyWeatherProvider);
+
+    return weeklyForecast.when(
+      data: (weatherData) {
+        return ListView.builder(
+          itemCount: weatherData.daily.weatherCode.length,
           shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index){
-              final dayOfWeek =
-                  DateTime.parse(weeklyweather.daily.time[index]).dayOfWeek;
-              final date = weeklyweather.daily.time[index];
-              final temp = weeklyweather.daily.temperature2mMax[index];
-              final icon = weeklyweather.daily.weatherCode[index];
-              return WeeklyForecastTile(
-                date: date,
-                day: dayOfWeek,
-                icon: getWeatherIcon2(icon),
-                temp: temp.round(),
-              );
-            },
-          );
-        },
-        error: (error, stakeTrace){
-          return Center(
-            child: Text(error.toString()),
-          );
-        },
-        loading: (){
-          return CircularProgressIndicator();
-        });
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final dayOfWeek =
+                DateTime.parse(weatherData.daily.time[index]).dayOfWeek;
+            final date = weatherData.daily.time[index];
+            final temp = weatherData.daily.temperature2mMax[index];
+            final icon = weatherData.daily.weatherCode[index];
+
+            return WeeklyForecastTile(
+              date: date,
+              day: dayOfWeek,
+              icon: getWeatherIcon2(icon),
+              temp: temp.round(),
+            );
+          },
+        );
+      },
+      error: (error, stackTrace) {
+        return Center(
+          child: Text(
+            error.toString(),
+          ),
+        );
+      },
+      loading: () {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
   }
 }
 
 class WeeklyForecastTile extends StatelessWidget {
-  const WeeklyForecastTile({super.key, required this.day, required this.date, required this.temp, required this.icon});
+  const WeeklyForecastTile({
+    super.key,
+    required this.day,
+    required this.date,
+    required this.temp,
+    required this.icon,
+  });
 
   final String day;
   final String date;
@@ -56,33 +71,44 @@ class WeeklyForecastTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
-       padding: EdgeInsets.symmetric(
-         vertical: 12,
-       ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 20,
+      ),
+      margin: const EdgeInsets.symmetric(
+        vertical: 12,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: AppColors.accentBlue
+        color: AppColors.accentBlue,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-        Column(
-          children: [
-             Text(day,style: TextStyles.h3,),
-            const SizedBox(height: 5,),
-            Text(day,style: TextStyles.subtitleText,),
-
-
-          ],
-        ),
-          SuperscriptText(
-              text: temp.toString(),
-              superScript: "°C",
-              color: AppColors.white,
-              superscriptColor: AppColors.grey
+          Column(
+            children: [
+              Text(
+                day,
+                style: TextStyles.h3,
+              ),
+              const SizedBox(height: 5),
+              Text(
+                date,
+                style: TextStyles.subtitleText,
+              ),
+            ],
           ),
+
+          // Temperature
+          SuperscriptText(
+            text: '$temp',
+            color: AppColors.white,
+            superScript: '°C',
+            superscriptColor: AppColors.white,
+          ),
+
+          // weather icon
           Image.asset(
             icon,
             width: 60,
