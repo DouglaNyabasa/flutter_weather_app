@@ -16,7 +16,6 @@ final _screens =[
   const WeatherScreen(),
   const SearchScreen(),
   const ForecastScreen(),
-  const Center(child: Text("Settings Screen"),),
 
 ];
 int _currentPageIndex = 0;
@@ -33,11 +32,7 @@ final _destinations = const [
     label: 'Weather',
     selectedIcon: Icon(CupertinoIcons.cloud_moon_bolt, color: Colors.orange,),
   ),
-  NavigationDestination(icon: Icon(CupertinoIcons.settings_solid),
-    label: 'Settings',
-    selectedIcon: Icon(CupertinoIcons.settings_solid, color: Colors.orange,),
 
-  ),
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
