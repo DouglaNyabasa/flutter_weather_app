@@ -15,7 +15,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: darkTheme,
+      theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
       home:  SplashScreen(),
